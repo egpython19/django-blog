@@ -1,11 +1,5 @@
 *.pyc
 *.db
 *.sqlite3
-blogging/__init__.py
-polling/__init__.py
-mysite/__init__.py
-manage.py
-blogging/migrations/
-polling/migrations/
 venv/
 .idea/
