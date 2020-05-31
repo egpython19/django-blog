@@ -25,13 +25,17 @@ def detail_view(request, post_id):
 
 def add_model(request):
     if request.method == "POST":
-        form = MyPostForm(request.POST)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.author = request.user
-            post.published_date = timezone.now()
-            post.save()
-            return redirect('/')
+        try:
+            form = MyPostForm(request.POST)
+            if form.is_valid():
+                post = form.save(commit=False)
+                post.author = request.user
+                post.published_date = timezone.now()
+                post.save()
+                return redirect('/')
+        except ValueError:
+            return render(request, "blogging/error-login.html")
+
     else:  # GET
         form = MyPostForm()
         context = {'form': form}

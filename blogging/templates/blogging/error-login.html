@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>NOT SAVED</h1>
+    <h2>Only logged in users can add new posts!</h2>
+
+    <a href="{% url 'blog_index' %}">Home</a>
+
+{% endblock %}

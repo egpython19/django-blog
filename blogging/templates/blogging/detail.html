@@ -2,6 +2,8 @@
 
 {% block content %}
 
+    <a href="{% url 'blog_index' %}">Home</a>
+
     <h1>{{ post }}</h1>
 
     <p class = "byline">
@@ -17,7 +19,5 @@
         <li>{{ category }}</li>
         {% endfor %}
     </ul>
-
-    <a href="{% url 'blog_index' %}">Home</a>
 
 {% endblock %}
