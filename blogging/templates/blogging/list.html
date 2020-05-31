@@ -1,9 +1,6 @@
-{% extends "base.html" %}
-
-{% block content %}
+{% extends "base.html" %}{% block content %}
     <h1>Coolest Posts</h1>
     {% comment %} here is where the query happens {% endcomment %}
-
     {% for post in posts %}
     <div class = "post">
         <h2>
@@ -22,5 +19,4 @@
         </ul>
     </div>
     {% endfor %}
-
 {% endblock %}
