@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import Http404
 from blogging.models import Post
+from blogging.forms import MyPostForm
 
 
 def list_view(request):
@@ -18,3 +19,17 @@ def detail_view(request, post_id):
         raise Http404
     context = {'post': post}
     return render(request, 'blogging/detail.html', context)
+
+
+def add_model(request):
+    if request.method == "POST":
+        form = MyPostForm(request.POST)
+        if form.is_valid():
+            model_instance = form.save(commit=False)
+            model_instance.author = request.user
+            model_instance.save()
+            return redirect('/')
+    else:  # GET
+        form = MyPostForm()
+        context = {'form': form}
+        return render(request, "blogging/add.html", context)
