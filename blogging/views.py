@@ -35,7 +35,6 @@ def add_model(request):
                 return redirect('/')
         except ValueError:
             return render(request, "blogging/error-login.html")
-
     else:  # GET
         form = MyPostForm()
         context = {'form': form}
