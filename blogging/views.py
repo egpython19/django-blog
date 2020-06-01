@@ -7,9 +7,9 @@ from blogging.forms import MyPostForm
 
 def list_view(request):
     published = Post.objects.exclude(published_date__exact=None)
-    posts = published.order_by('-published_date')
-    context = {'posts': posts}
-    return render(request, 'blogging/list.html', context)
+    posts = published.order_by("-published_date")
+    context = {"posts": posts}
+    return render(request, "blogging/list.html", context)
 
 
 def detail_view(request, post_id):
@@ -19,8 +19,8 @@ def detail_view(request, post_id):
         post = published.get(pk=post_id)
     except Post.DoesNotExist:
         raise Http404
-    context = {'post': post}
-    return render(request, 'blogging/detail.html', context)
+    context = {"post": post}
+    return render(request, "blogging/detail.html", context)
 
 
 def add_model(request):
@@ -32,10 +32,10 @@ def add_model(request):
                 post.author = request.user
                 post.published_date = timezone.now()
                 post.save()
-                return redirect('/')
+                return redirect("/")
         except ValueError:
             return render(request, "blogging/error-login.html")
     else:  # GET
         form = MyPostForm()
-        context = {'form': form}
+        context = {"form": form}
         return render(request, "blogging/add.html", context)
